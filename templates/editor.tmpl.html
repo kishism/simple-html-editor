@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>  Editor</title>
+  <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  <style>
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #2c3e50;
+      line-height: 1.6;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1100px;
+      width: 100%;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    /* Editor form */
+    form {
+      flex: 1 1 600px;
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #34495e;
+      user-select: none;
+    }
+
+    textarea {
+      flex-grow: 1;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      padding: 1rem;
+      border: 1.5px solid #dfe6e9;
+      border-radius: 8px;
+      background-color: #f9fbfc;
+      color: #2c3e50;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+      min-height: 320px;
+    }
+
+    textarea:focus {
+      border-color: #2980b9;
+      outline: none;
+      background-color: #ffffff;
+      box-shadow: 0 0 8px rgba(41, 128, 185, 0.2);
+    }
+
+    button {
+      margin-top: 1.2rem;
+      align-self: flex-start;
+      background: #2980b9;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.6rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.25s ease;
+      box-shadow: 0 4px 12px rgba(41, 128, 185, 0.3);
+    }
+
+    button:hover {
+      background: #1c5980;
+      box-shadow: 0 6px 16px rgba(28, 89, 128, 0.5);
+    }
+
+    #save-status {
+      margin-top: 0.8rem;
+      font-weight: 600;
+      color: #27ae60;
+      min-height: 1.2rem;
+      user-select: none;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      flex: 0 0 280px;
+      padding: 2rem 2rem;
+      border-left: 1px solid #e1e8ed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+      font-weight: 700;
+      color: #34495e;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      user-select: none;
+    }
+
+    .sidebar p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 1rem;
+      }
+      .container {
+        flex-direction: column;
+        box-shadow: none;
+        border-radius: 0;
+      }
+      .sidebar {
+        border-left: none;
+        border-top: 1px solid #e1e8ed;
+        padding: 1rem 0 0 0;
+        margin-top: 1.5rem;
+      }
+      form {
+        padding: 1rem 0 0 0;
+      }
+      textarea {
+        min-height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form hx-post="/save" hx-target="#save-status" hx-swap="outerHTML">
+      <h2>Simple Editor</h2>
+      <textarea name="content" rows="15" cols="60">{{ .InitialContent }}</textarea>
+      <button type="submit">Save</button>
+      <div id="save-status"></div>
+    </form>
+
+    <aside class="sidebar">
+      <h3>About this Editor</h3>
+      <p> It's made with Go and HTMX. </p>
+      <pre>
+        /\_/\
+       ( o.o )
+        &gt; ^ &lt;
+      </pre>
+    </aside>
+  </div>
+</body>
+</html>
