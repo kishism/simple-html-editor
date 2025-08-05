@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>View Saved Content</title>
+  <meta charset="UTF-8" />
+  <title>View Content</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 700px;
+      margin: 2rem auto;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
-    <h1>Saved Content View</h1>
-    <div>
-        {{ .Content }}
-    </div>
-    <a href="/">Back to Editor</a>
+  <h2>Saved Content</h2>
+  <div>
+    {{ .ViewContent }}
+  </div>
 </body>
 </html>

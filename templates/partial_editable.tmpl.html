@@ -1,0 +1,34 @@
+<div id="editor-container">
+  <div class="toolbar">
+    <!-- repeat buttons here, so when partial replaces, they remain -->
+    <button
+      type="submit"
+      hx-post="/format/bold"
+      hx-target="#editor-container"
+      hx-swap="outerHTML"
+      onclick="captureSelection()"
+    >
+      <strong><b>B</b></strong>
+    </button>
+    <button
+      type="submit"
+      hx-post="/format/italic"
+      hx-target="#editor-container"
+      hx-swap="outerHTML"
+      onclick="captureSelection()"
+    >
+      <strong><i>i</i></strong>
+    </button>
+    <button
+      type="submit"
+      hx-post="/format/underline"
+      hx-target="#editor-container"
+      hx-swap="outerHTML"
+      onclick="captureSelection()"
+    >
+      <strong><u>U</u></strong>
+    </button>
+  </div>
+
+  <textarea id="editor" name="content" rows="15" cols="60">{{ .InitialContent }}</textarea>
+</div>
